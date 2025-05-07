@@ -26,13 +26,13 @@ func (m *UserManager) CreateUser(name string, age int) (error, *User) {
 	return nil, &brandNewUser
 }
 
-func (m *UserManager) GetUser(id int) (error, *User) {
-	for _, user := range *m {
-		if user.ID == id {
-			return nil, &user
-		}
-	}
-	return fmt.Errorf("Cannot find user with id %d", id), nil
+func (m *UserManager) GetUser(id int) (error, *User) {users := *m  // Temporal para evitar repetir (*m)
+        for i := range users {
+            if users[i].ID == id {
+                return nil, &users[i]  // Puntero al elemento del slice
+            }
+        }
+        return fmt.Errorf("Cannot find user with id %d", id), nil
 }
 
 func (m *UserManager) UpdateUser(id int, name string, age int) error {
