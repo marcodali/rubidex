@@ -26,7 +26,8 @@ func (m *UserManager) CreateUser(name string, age int) (error, *User) {
 	return nil, &brandNewUser
 }
 
-func (m *UserManager) GetUser(id int) (error, *User) {users := *m  // Temporal para evitar repetir (*m)
+func (m *UserManager) GetUser(id int) (error, *User) {
+	users := *m  // Temporal para evitar repetir (*m)
         for i := range users {
             if users[i].ID == id {
                 return nil, &users[i]  // Puntero al elemento del slice
